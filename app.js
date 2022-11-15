@@ -11,21 +11,20 @@ app.use(cors())
 app.get('/', (req, res) => {
     try {
         const { data } = req.query
-        return res.send(`Hi this is a get api ${data}` );   
+        return res.send('yes' );   
     } catch (e) {
        return res.send(e)
     }
 })
 
-app.post('/test', (req, res) => {
+app.post('/', (req, res) => {
     try {
-        console.log(req.body)
-        const data = req.body.id
-        console.log(data)
-    return res.send(`this is a post api request which take  ${data} in body`)
+        const { data } = req.body
+    return res.send('yes')
      
     } catch (e) {
-       return res.send(e) 
+        console.log(e)
+     return res.status(500).send({ status: 500, message: 'Error occured', error: e });
     }
    
 })
